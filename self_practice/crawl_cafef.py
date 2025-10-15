@@ -31,11 +31,14 @@ for new in news:
     title = new.h3.a.get_text(strip=True)
     time_post = new.find("div", class_="knswli-right").span["title"]
     summary = new.find("div", class_="knswli-right").p.get_text(strip=True)
+    base_link = "https://cafef.vn"
+    link = base_link + new.find("a", class_=["avatar", "img-resize"])["href"]
 
     data.append({
         "Title": title, 
         "Time": time_post,
-        "Summary": summary
+        "Summary": summary,
+        "Link": link
     })
 
 df = pd.DataFrame(data)
